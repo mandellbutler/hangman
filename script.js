@@ -29,16 +29,32 @@ function startGame () {
 function startTimer () {
     console.log("Time on the clock is ", timeLeft)
     //reset timer
-    timeLeft = 20;
+    timeLeft = 12;
     let timerInterval = setInterval(function() {
         // subtract 1 from remaining time
         timeLeft --;
         //update displayed time
-        timer.textContent = timeLeft;
+            //add logic to determine time display format
+        if (timeLeft <= 9) {
+            timer.innerHTML = `00:0${timeLeft}`
+        } else {
+            timer.innerHTML = `00:${timeLeft}`;
+        }
+        
         //timer reaches zero
+        if (timeLeft === 0) {
             //stop timer
+            clearInterval(timerInterval);
             //stop game with loss
+            userLosses();
+
+        }
+            
     }, 1000)
+}
+
+function userLosses() {
+    console.log("User Losses!")
 }
 
 function resetGame () {
