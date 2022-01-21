@@ -1,7 +1,7 @@
 //DEPENDENCIES
 const startButton = document.getElementById("start-game");
 const resetButton = document.getElementById("reset-game")
-const wordContainer = document.getElementById("word-container");
+const wordDisplay = document.getElementById("word");
 const aside = document.getElementById("game-status");
 const stats = document.getElementById("stats");
 const timer = document.getElementById("timer");
@@ -18,16 +18,32 @@ const timer = document.getElementById("timer");
 //STARTING DATA
 let timeLeft = 20;
 
+let wordArray = [
+    "React",
+    "Javascript",
+    "Java",
+    "Dependencies",
+    "HTML",
+    "Function",
+    "Variable",
+    "Object",
+    "Array",
+    "Github",
+    "Heroku",
+    "Stylesheet",
+    "Deployment",
+    "String"
+]
+
 //FUNCTIONS
 function startGame () {
     //timer begins
     startTimer();
         //the black spaces appear in word area
-    console.log("Let's roll!")
+    displayWord();
 }
 
 function startTimer () {
-    console.log("Time on the clock is ", timeLeft)
     //reset timer
     timeLeft = 12;
     let timerInterval = setInterval(function() {
@@ -51,6 +67,11 @@ function startTimer () {
         }
             
     }, 1000)
+}
+
+function displayWord () {
+    wordDisplay.textContent = (wordArray[Math.floor(Math.random()* wordArray.length)])
+
 }
 
 function userLosses() {
