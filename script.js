@@ -1,6 +1,7 @@
 //DEPENDENCIES
 const startButton = document.getElementById("start-game");
 const resetButton = document.getElementById("reset-game")
+const displayArea = document.getElementById("display");
 const wordDisplay = document.getElementById("word");
 const result = document.getElementById("result");
 const aside = document.getElementById("game-status");
@@ -12,7 +13,7 @@ const lossEl = document.getElementById("losses");
 
 
 
-
+displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
 
 
 
@@ -92,8 +93,8 @@ function startTimer () {
 }
 
 function displayWord () {
-    wordDisplay.textContent = (wordArray[Math.floor(Math.random()* wordArray.length)])
-
+    //display a random word
+    displayArea.innerHTML = `<h2 id="word"> ${(wordArray[Math.floor(Math.random()* wordArray.length)])}</h2>`
 }
 
 function userWins () {
@@ -114,6 +115,10 @@ function userLosses() {
     losses++;
     //record the loss
     lossEl.textContent = losses;
+    //signal end of game
+    if (timeLeft === 0) {
+        displayArea.innerHTML = `<h1 id="word" style="color: purple;"> GAME OVER!!</h1>`
+    }
     //inform User of Loss
     result.setAttribute("style", "color: red;")
     result.textContent = "You Lose!!!"
