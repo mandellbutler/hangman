@@ -16,12 +16,29 @@ const timer = document.getElementById("timer");
 
 
 //STARTING DATA
+let timeLeft = 20;
 
 //FUNCTIONS
 function startGame () {
     //timer begins
+    startTimer();
         //the black spaces appear in word area
     console.log("Let's roll!")
+}
+
+function startTimer () {
+    console.log("Time on the clock is ", timeLeft)
+    //reset timer
+    timeLeft = 20;
+    let timerInterval = setInterval(function() {
+        // subtract 1 from remaining time
+        timeLeft --;
+        //update displayed time
+        timer.textContent = timeLeft;
+        //timer reaches zero
+            //stop timer
+            //stop game with loss
+    }, 1000)
 }
 
 function resetGame () {
