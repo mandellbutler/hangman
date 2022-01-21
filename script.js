@@ -2,9 +2,12 @@
 const startButton = document.getElementById("start-game");
 const resetButton = document.getElementById("reset-game")
 const wordDisplay = document.getElementById("word");
+const result = document.getElementById("result");
 const aside = document.getElementById("game-status");
 const stats = document.getElementById("stats");
 const timer = document.getElementById("timer");
+const winsEl = document.getElementById("wins");
+const lossEl = document.getElementById("losses");
 
 
 
@@ -17,6 +20,8 @@ const timer = document.getElementById("timer");
 
 //STARTING DATA
 let timeLeft = 20;
+let losses = 0;
+let wins = 0;
 
 let wordArray = [
     "React",
@@ -32,7 +37,16 @@ let wordArray = [
     "Heroku",
     "Stylesheet",
     "Deployment",
-    "String"
+    "String",
+    "Module",
+    "JSON",
+    "MongoDB",
+    "JQuery",
+    "Node",
+    "Abstraction",
+    "Polymophism",
+    "Inheritance",
+    "Encapsulation"
 ]
 
 //FUNCTIONS
@@ -46,6 +60,9 @@ function startGame () {
 function startTimer () {
     //reset timer
     timeLeft = 12;
+    //reset Result Area
+    result.textContent = "";
+    
     let timerInterval = setInterval(function() {
         // subtract 1 from remaining time
         timeLeft --;
@@ -65,6 +82,11 @@ function startTimer () {
             userLosses();
 
         }
+
+        //user guesses word
+        if (timeLeft === 5){
+            userWins();
+        }
             
     }, 1000)
 }
@@ -74,8 +96,28 @@ function displayWord () {
 
 }
 
+function userWins () {
+    //record the win
+    wins++;
+    //display the win
+    winsEl.textContent = wins;
+    //inform User of Win
+    result.setAttribute("style", "color: green;")
+    result.textContent = "You Win!!!"
+    
+    
+}
+
 function userLosses() {
     console.log("User Losses!")
+    //display loss message
+    losses++;
+    //record the loss
+    lossEl.textContent = losses;
+    //inform User of Loss
+    result.setAttribute("style", "color: red;")
+    result.textContent = "You Lose!!!"
+
 }
 
 function resetGame () {
