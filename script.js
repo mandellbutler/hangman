@@ -50,6 +50,9 @@ let wordArray = [
     "Encapsulation"
 ]
 
+let currentWord;
+let hiddenWord;
+
 //FUNCTIONS
 function startGame () {
     //timer begins
@@ -63,6 +66,7 @@ function startTimer () {
     timeLeft = 12;
     //reset Result Area
     result.textContent = "";
+    timer.innerHTML = `00:${timeLeft}`
     
     let timerInterval = setInterval(function() {
         // subtract 1 from remaining time
@@ -88,13 +92,22 @@ function startTimer () {
         if (timeLeft === 5){
             userWins();
         }
-            
+
+        
+
     }, 1000)
+
 }
 
 function displayWord () {
-    //display a random word
-    displayArea.innerHTML = `<h2 id="word"> ${(wordArray[Math.floor(Math.random()* wordArray.length)])}</h2>`
+    //save random word in a variable
+    currentWord = wordArray[Math.floor(Math.random()* wordArray.length)]
+    //then display it as hidden
+    hiddenWord = ""
+    for (let i = 0; i < currentWord.length; i++) {
+        hiddenWord+= "_"
+    }
+    displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
 }
 
 function userWins () {
