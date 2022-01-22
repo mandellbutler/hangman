@@ -102,11 +102,12 @@ function startTimer () {
 function displayWord () {
     //save random word in a variable
     currentWord = wordArray[Math.floor(Math.random()* wordArray.length)]
-    //then display it as hidden
+    //loop thru current word
     hiddenWord = ""
     for (let i = 0; i < currentWord.length; i++) {
         hiddenWord+= "_"
     }
+    //and display it hidden with spaced "_"
     displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
 }
 
@@ -138,6 +139,10 @@ function userLosses() {
 
 }
 
+function handleKeypress () {
+    console.log("A key was pressed")
+}
+
 function resetGame () {
     //new word displays with blank spaces
     //timer resets
@@ -149,6 +154,9 @@ function resetGame () {
         
     //user presses reset button
     resetButton.addEventListener("click", (resetGame))
+
+    //user presses a letter
+    document.addEventListener("keypress", (handleKeypress))
 //INITIALIZATIONS
 
 
