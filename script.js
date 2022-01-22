@@ -25,29 +25,29 @@ let losses = 0;
 let wins = 0;
 
 let wordArray = [
-    "React",
-    "Javascript",
-    "Java",
-    "Dependencies",
-    "HTML",
-    "Function",
-    "Variable",
-    "Object",
-    "Array",
-    "Github",
-    "Heroku",
-    "Stylesheet",
-    "Deployment",
-    "String",
-    "Module",
-    "JSON",
-    "MongoDB",
-    "JQuery",
-    "Node",
-    "Abstraction",
-    "Polymophism",
-    "Inheritance",
-    "Encapsulation"
+    "react",
+    "javascript",
+    "java",
+    "dependencies",
+    "html",
+    "function",
+    "variable",
+    "object",
+    "array",
+    "github",
+    "heroku",
+    "stylesheet",
+    "deployment",
+    "string",
+    "module",
+    "json",
+    "mongodb",
+    "jquery",
+    "node",
+    "abstraction",
+    "polymophism",
+    "inheritance",
+    "encapsulation"
 ]
 
 let currentWord;
@@ -102,6 +102,7 @@ function startTimer () {
 function displayWord () {
     //save random word in a variable
     currentWord = wordArray[Math.floor(Math.random()* wordArray.length)]
+    console.log(currentWord)
     //loop thru current word
     hiddenWord = ""
     for (let i = 0; i < currentWord.length; i++) {
@@ -139,9 +140,39 @@ function userLosses() {
 
 }
 
-function handleKeypress () {
-    console.log("A key was pressed")
+function handleKeyPress (event) {
+    let key = event.key;
+    let letters = hiddenWord.split("");
+    //go thru current word
+    for (let i = 0; i < currentWord.length; i++) {
+        //compare each letter to the pressed letter
+        let letter = currentWord[i];
+        if (letter === key) {
+            letters[i] = key;
+            //if current index of hidden is "_" 
+        } else if (letter === "_") {
+            letters[i]
+        } else {
+            console.log("Wrong letter!")
+        }
+        //if they are a match
+        //replace hidden letter with pressed letter
+    }
+        hiddenWord = letters.join("");
+    //are there any underscores left?
+    if (hiddenWord.includes("_")) {
+        //if yes, update display
+        displayArea.innerHTML = `<h2 id="word"> ${letters}</h2>`
+        //if no, then the user wins
+    }   else {
+        userWins();
+    }
+        
+        
+    console.log(key)
+    console.log(hiddenWord)
 }
+
 
 function resetGame () {
     //new word displays with blank spaces
@@ -156,7 +187,7 @@ function resetGame () {
     resetButton.addEventListener("click", (resetGame))
 
     //user presses a letter
-    document.addEventListener("keypress", (handleKeypress))
+    document.addEventListener("keypress", (handleKeyPress))
 //INITIALIZATIONS
 
 
