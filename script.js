@@ -162,7 +162,7 @@ function handleKeyPress (event) {
     //are there any underscores left?
     if (hiddenWord.includes("_")) {
         //if yes, update display
-        displayArea.innerHTML = `<h2 id="word"> ${letters}</h2>`
+        displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
         //if no, then the user wins
     }   else {
         userWins();
