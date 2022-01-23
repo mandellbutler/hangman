@@ -167,7 +167,6 @@ function handleKeyPress (event) {
         //if no, then the user wins
     }   else {
         gameWon = true;
-        userWins();
     }
         
         
