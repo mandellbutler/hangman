@@ -52,6 +52,7 @@ let wordArray = [
 
 let currentWord;
 let hiddenWord;
+let gameWon = false;
 
 //FUNCTIONS
 function startGame () {
@@ -62,6 +63,8 @@ function startGame () {
 }
 
 function startTimer () {
+    //reset win
+    gameWon = false;
     //reset timer
     timeLeft = 12;
     //reset Result Area
@@ -85,11 +88,9 @@ function startTimer () {
             clearInterval(timerInterval);
             //stop game with loss
             userLosses();
-
-        }
-
-        //user guesses word
-        if (timeLeft === 5){
+            //user guesses word
+        } else if (gameWon) {
+            clearInterval(timerInterval);
             userWins();
         }
 
@@ -165,6 +166,7 @@ function handleKeyPress (event) {
         displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
         //if no, then the user wins
     }   else {
+        gameWon = true;
         userWins();
     }
         
