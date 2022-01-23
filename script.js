@@ -53,6 +53,7 @@ let wordArray = [
 let currentWord;
 let hiddenWord;
 let gameWon = false;
+let resetClicked = false;
 
 //FUNCTIONS
 function startGame () {
@@ -66,7 +67,8 @@ function startTimer () {
     //reset win
     gameWon = false;
     //reset timer
-    timeLeft = 12;
+    resetClicked = false;
+    timeLeft = 45;
     //reset Result Area
     result.textContent = "";
     timer.innerHTML = `00:${timeLeft}`
@@ -92,6 +94,10 @@ function startTimer () {
         } else if (gameWon) {
             clearInterval(timerInterval);
             userWins();
+        } else if (resetClicked) {
+            timeLeft = 0;
+            timer.innerHTML = `00:0${timeLeft}`
+            clearInterval(timerInterval);
         }
 
         
@@ -186,7 +192,7 @@ function resetGame () {
     losses = 0;
     lossEl.textContent = losses;
     //timer resets
-    
+    resetClicked = true;
     console.log("Let's reset!")
 }
 //USER INTERACTIONS
