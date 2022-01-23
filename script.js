@@ -172,6 +172,7 @@ function handleKeyPress (event) {
         displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
         //if no, then the user wins
     }   else {
+        displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
         gameWon = true;
     }
         
