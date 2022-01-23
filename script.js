@@ -13,7 +13,7 @@ const lossEl = document.getElementById("losses");
 
 
 
-// displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
+displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
 
 
 

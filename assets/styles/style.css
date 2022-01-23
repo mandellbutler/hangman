@@ -1,0 +1,23 @@
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+
+#start-game {
+    font-size: large;
+}
+
+#gameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#word-container {
+    margin: 6em;
+}
