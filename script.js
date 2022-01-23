@@ -13,7 +13,7 @@ const lossEl = document.getElementById("losses");
 
 
 
-displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
+// displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
 
 
 
@@ -148,18 +148,18 @@ function handleKeyPress (event) {
     for (let i = 0; i < currentWord.length; i++) {
         //compare each letter to the pressed letter
         let letter = currentWord[i];
+        //if they are a match
         if (letter === key) {
+           //replace hidden letter with pressed letter 
             letters[i] = key;
             //if current index of hidden is "_" 
         } else if (letter === "_") {
+            //return "_"
             letters[i]
-        } else {
-            console.log("Wrong letter!")
-        }
-        //if they are a match
-        //replace hidden letter with pressed letter
+        } 
+
     }
-        hiddenWord = letters.join("");
+    hiddenWord = letters.join("");
     //are there any underscores left?
     if (hiddenWord.includes("_")) {
         //if yes, update display
@@ -177,8 +177,17 @@ function handleKeyPress (event) {
 
 function resetGame () {
     //new word displays with blank spaces
+    displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
+    //clear results area
+    result.textContent = ""
+    //clear stats
+    wins = 0;
+    winsEl.textContent = wins;
+    losses = 0;
+    lossEl.textContent = losses;
     //timer resets
-    console.log("Let's bounce!")
+    
+    console.log("Let's reset!")
 }
 //USER INTERACTIONS
     //user presses start game button
