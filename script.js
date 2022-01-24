@@ -59,6 +59,8 @@ let gameOver = false;
 
 //FUNCTIONS
 function startGame () {
+    //reset timer color
+    timer.classList = "none"
     //timer begins
     startTimer();
         //the black spaces appear in word area
@@ -70,7 +72,7 @@ function startTimer () {
     gameWon = false;
     //reset timer
     resetClicked = false;
-    timeLeft = 59;
+    timeLeft = 11;
     //reset Result Area
     result.textContent = "";
     timer.innerHTML = `00:${timeLeft}`
@@ -81,6 +83,7 @@ function startTimer () {
         //update displayed time
             //add logic to determine time display format
         if (timeLeft <= 9) {
+            timer.classList= "warning"
             timer.innerHTML = `00:0${timeLeft}`
         } else {
             timer.innerHTML = `00:${timeLeft}`;
@@ -103,6 +106,7 @@ function startTimer () {
         } else if (resetClicked) {
             timeLeft = 0;
             timer.innerHTML = `00:0${timeLeft}`
+            timer.classList = "none"
             clearInterval(timerInterval);
         }
 
@@ -203,6 +207,7 @@ function resetGame () {
         //reset time left to 0
         timeLeft = 0;
         timer.innerHTML = `00:0${timeLeft}`
+        timer.classList = "none"
     }
     console.log("Let's reset!")
 }
