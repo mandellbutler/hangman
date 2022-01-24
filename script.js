@@ -47,7 +47,8 @@ let wordArray = [
     "abstraction",
     "polymophism",
     "inheritance",
-    "encapsulation"
+    "encapsulation",
+    "bootstrap"
 ]
 
 let currentWord;

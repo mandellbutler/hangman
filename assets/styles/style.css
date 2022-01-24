@@ -1,4 +1,7 @@
-
+* {
+    background-color: white;
+    color: black;
+}
 
 header {
     display: flex;
@@ -6,6 +9,19 @@ header {
     justify-content: center;
     align-items: center;
     margin-top: 5em;
+    padding: 2em;
+    border-bottom: solid 4px black;
+}
+
+button {
+    background-color:  #4CB7FB;
+    padding: .5em;
+    border-radius: 8px;
+}
+
+button:hover {
+    color: white;
+    opacity: 70%;
 }
 
 #start-game {
@@ -20,4 +36,9 @@ header {
 
 #word-container {
     margin: 6em;
+}
+
+#game-status {
+    border-left: solid 4px black;
+    padding-left: 1em;
 }
