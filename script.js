@@ -161,7 +161,7 @@ function handleKeyPress (event) {
         //if they are a match
         if (letter === key) {
            //replace hidden letter with pressed letter 
-            letters[i] = key;
+            letters[i] = key.toUpperCase();
             //if current index of hidden is "_" 
         } else if (letter === "_") {
             //return "_"

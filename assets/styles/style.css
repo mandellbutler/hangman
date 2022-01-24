@@ -32,13 +32,29 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin: 0 auto;
 }
 
 #word-container {
-    margin: 6em;
+    margin: 0 auto;
 }
 
 #game-status {
     border-left: solid 4px black;
-    padding-left: 1em;
+    padding: 3em 2em;
+    width: 25%;
+}
+
+#stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#timer-section {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    align-items: center;
+    font-size: 2em;
 }
