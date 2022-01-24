@@ -11,7 +11,7 @@
 <body>
     <header>
         <!-- Title -->
-        <h1>Web Dev Hangman</h1>
+        <h1>Hangman: Web Dev Edition</h1>
         <!--start button-->
         <button id="start-game">Start Game</button>
     </header>
@@ -24,15 +24,19 @@
         <aside id="game-status">
             <!--stats-->
             <section id="stats">
-                <!--wins/loses/reset button-->
-                <p>Wins: <span id="wins">0</span></p>
-                <p>Losses: <span id="losses">0</span></p>
-                <button id="reset-game">Reset</button>
+                <div class="containers">
+                    <!--wins/loses/reset button-->
+                    <p class="light">Wins: <span id="wins" class="light">0</span></p>
+                    <p class="light">Losses: <span id="losses" class="light">0</span></p>
+                    <button id="reset-game">Reset</button>
+                </div>
             </section>
             <section id="timer-section">
-                <!--timer-->
-                <p id="timer">00:00</p>
-                <p>Remaining Time</p>
+                <div id="timer-container" class="containers">
+                    <!--timer-->
+                    <p id="timer" class="light" style="background-color: white">00:00</p>
+                    <p class="light">Time Left</p>
+                </div>
             </section>
         </aside>
     </div>
