@@ -151,7 +151,7 @@ function userLosses() {
 }
 
 function handleKeyPress (event) {
-    let key = event.key;
+    let key = event.key.toLowerCase();
     let letters = hiddenWord.split("");
     //go thru current word
     for (let i = 0; i < currentWord.length; i++) {
