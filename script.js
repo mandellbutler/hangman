@@ -72,7 +72,7 @@ function startTimer () {
     gameWon = false;
     //reset timer
     resetClicked = false;
-    timeLeft = 11;
+    timeLeft = 4;
     //reset Result Area
     result.textContent = "";
     timer.innerHTML = `00:${timeLeft}`
@@ -150,7 +150,7 @@ function userLosses() {
         displayArea.innerHTML = `<h1 id="word" style="color: black;"> GAME OVER!!</h1>`
     }
     //inform User of Loss
-    result.setAttribute("style", "display: flex; justify-content: center; color: red;")
+    result.setAttribute("style", "color: red;")
     result.textContent = "You Lose!!!"
 
 }
