@@ -105,7 +105,7 @@ function startTimer () {
         } else if (resetClicked) {
             timeLeft = 0;
             timer.innerHTML = `00:0${timeLeft}`
-            timer.classList = "none"
+            timer.classList = "light"
             clearInterval(timerInterval);
         }
 
@@ -206,7 +206,7 @@ function resetGame () {
         //reset time left to 0
         timeLeft = 0;
         timer.innerHTML = `00:0${timeLeft}`
-        timer.classList = "none"
+        timer.classList = "light"
     }
     console.log("Let's reset!")
 }
