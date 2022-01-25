@@ -82,7 +82,7 @@ function startTimer () {
         //update displayed time
             //add logic to determine time display format
         if (timeLeft <= 9) {
-            timer.classList = "warning"
+            timer.classList.add("warning");
             timer.innerHTML = `00:0${timeLeft}`
         } else {
             timer.innerHTML = `00:${timeLeft}`;
