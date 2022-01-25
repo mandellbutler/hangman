@@ -59,7 +59,7 @@ let gameOver = false;
 //FUNCTIONS
 function startGame () {
     //reset timer color
-    // timer.classList = "none"
+    timer.classList = "light"
     //timer begins
     startTimer();
         //the black spaces appear in word area
