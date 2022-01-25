@@ -1,7 +1,6 @@
 //DEPENDENCIES
 const startButton = document.getElementById("start-game");
 const resetButton = document.getElementById("reset-game")
-const displayArea = document.getElementById("display");
 const wordDisplay = document.getElementById("word");
 const result = document.getElementById("result");
 const aside = document.getElementById("game-status");
@@ -13,7 +12,7 @@ const lossEl = document.getElementById("losses");
 
 
 
-displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
+wordDisplay.textContent = "Press Start to Begin"
 
 
 
@@ -124,7 +123,7 @@ function displayWord () {
         hiddenWord+= "_"
     }
     //and display it hidden with spaced "_"
-    displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
+    wordDisplay.textContent = `${hiddenWord.split("").join(" ")}`
 }
 
 function userWins () {
@@ -147,7 +146,7 @@ function userLosses() {
     lossEl.textContent = losses;
     //signal end of game
     if (timeLeft === 0) {
-        displayArea.innerHTML = `<h1 id="word" style="color: black;"> GAME OVER!!</h1>`
+        wordDisplay.textContent = "GAME OVER!!"
     }
     //inform User of Loss
     result.setAttribute("style", "color: red;")
@@ -177,10 +176,10 @@ function handleKeyPress (event) {
     //are there any underscores left?
     if (hiddenWord.includes("_")) {
         //if yes, update display
-        displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
+        wordDisplay.textContent = `${hiddenWord.split("").join(" ")}`
         //if no, then the user wins
     }   else {
-        displayArea.innerHTML = `<h2 id="word"> ${hiddenWord.split("").join(" ")}</h2>`
+        wordDisplay.textContent = `${hiddenWord.split("").join(" ")}`
         gameWon = true;
     }
         
@@ -192,7 +191,7 @@ function handleKeyPress (event) {
 
 function resetGame () {
     //new word displays with blank spaces
-    displayArea.innerHTML = `<h2 id="word">Press Start to Begin</h2>`
+    wordDisplay.textContent = "Press Start to Begin"
     //clear results area
     result.textContent = ""
     //clear stats
