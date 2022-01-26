@@ -142,7 +142,8 @@ function userWins () {
     //inform User of Win
     result.setAttribute("style", "color: green;")
     result.textContent = "You Win!!!"
-    
+    //reset start button
+    startButton.textContent = "Next Word"
 }
 
 function userLosses() {
