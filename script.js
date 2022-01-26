@@ -54,10 +54,13 @@ let currentWord;
 let hiddenWord;
 let gameWon = false;
 let resetClicked = false;
+let startClick = 0;
 let gameOver = false;
 
 //FUNCTIONS
 function startGame () {
+    startClick ++;
+    console.log("Start Btn Clicked " + startClick + " times." )
     //reset timer color
     timer.classList = "light"
     //timer begins
@@ -96,16 +99,28 @@ function startTimer () {
             clearInterval(timerInterval);
             //stop game with loss
             userLosses();
-            //user guesses word
+            //reset start btn
+            startClick = 0;
+        //if user guesses word
         } else if (gameWon) {
             //game over
             gameOver = true;
             clearInterval(timerInterval);
             userWins();
+            //reset start btn
+            startClick = 0;
+            //if reset clicked during game
         } else if (resetClicked) {
             timeLeft = 0;
             timer.innerHTML = `00:0${timeLeft}`
-            timer.classList = "light"
+            timer.classList = "light";
+            //reset start btn
+            startClick = 0;
+            clearInterval(timerInterval);
+            //if start btn clicked during game
+        } else if (startClick > 1) {
+            //reset start btn for current play
+            startClick = 1;
             clearInterval(timerInterval);
         }
 
