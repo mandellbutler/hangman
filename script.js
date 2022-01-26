@@ -54,13 +54,14 @@ let currentWord;
 let hiddenWord;
 let gameWon = false;
 let resetClicked = false;
-let startClick = 0;
-let gameOver = false;
+let pass;
+let gameOver = true;
+
 
 //FUNCTIONS
 function startGame () {
-    startClick ++;
-    console.log("Start Btn Clicked " + startClick + " times." )
+    startButton.textContent = "Skip";
+    pass = false;
     //reset timer color
     timer.classList = "light"
     //timer begins
@@ -99,28 +100,20 @@ function startTimer () {
             clearInterval(timerInterval);
             //stop game with loss
             userLosses();
-            //reset start btn
-            startClick = 0;
         //if user guesses word
         } else if (gameWon) {
             //game over
             gameOver = true;
             clearInterval(timerInterval);
             userWins();
-            //reset start btn
-            startClick = 0;
             //if reset clicked during game
         } else if (resetClicked) {
             timeLeft = 0;
             timer.innerHTML = `00:0${timeLeft}`
             timer.classList = "light";
-            //reset start btn
-            startClick = 0;
             clearInterval(timerInterval);
             //if start btn clicked during game
-        } else if (startClick > 1) {
-            //reset start btn for current play
-            startClick = 1;
+        } else if (pass) {
             clearInterval(timerInterval);
         }
 
@@ -150,7 +143,6 @@ function userWins () {
     result.setAttribute("style", "color: green;")
     result.textContent = "You Win!!!"
     
-    
 }
 
 function userLosses() {
@@ -166,6 +158,23 @@ function userLosses() {
     //inform User of Loss
     result.setAttribute("style", "color: red;")
     result.textContent = "You Lose!!!"
+
+    //reset start button
+    startButton.textContent = "Start Game"
+
+}
+
+function userPasses () {
+    pass = true;
+    result.setAttribute("style", "color: #5499C7;")
+    result.textContent = "Skipped!"
+    //clear stats
+    losses++;
+    lossEl.textContent = losses;
+
+    setTimeout(function () {
+        startGame()
+    }, 1000);
 
 }
 
@@ -205,6 +214,8 @@ function handleKeyPress (event) {
 
 
 function resetGame () {
+    //reset start button
+    startButton.textContent = "Start Game";
     //new word displays with blank spaces
     wordDisplay.textContent = "Press Start to Begin"
     //clear results area
@@ -216,6 +227,7 @@ function resetGame () {
     lossEl.textContent = losses;
     //timer resets
     resetClicked = true;
+    gameOver = true;
     //if reset is pressed when game is already over
     if (gameOver) {
         //reset time left to 0
@@ -227,7 +239,14 @@ function resetGame () {
 }
 //USER INTERACTIONS
     //user presses start game button
-    startButton.addEventListener("click", (startGame))
+    startButton.addEventListener("click", (event) => {
+        if (gameOver) {
+            gameOver = false;
+            startGame();
+        } else {
+            userPasses();
+        }
+    })
         
     //user presses reset button
     resetButton.addEventListener("click", (resetGame))
