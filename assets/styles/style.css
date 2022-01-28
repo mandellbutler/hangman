@@ -8,7 +8,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5em;
+    margin-top: 1em;
     padding: 2em;
     border-bottom: solid 2px black; 
 }
@@ -28,7 +28,7 @@ button {
 
 .containers {
     background-color: white;
-    padding: 2em;
+    padding: 1em;
     display: flex;
     flex-direction: column;
     border: solid 2px black;
@@ -41,6 +41,14 @@ button {
 
 .dark {
     background-color: #5499C7;
+}
+
+.boxes {
+    height: 2em;
+    width: 2em;
+    border: solid 2px black;
+    border-radius: 8px;
+    /* background-color: #2874A6; */
 }
 
 button:hover {
@@ -96,6 +104,21 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     padding: 3em 2em;
+}
+
+#status-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+#box-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#bar-title {
+    display: flex;
+    justify-content: center;
 }
 
 #timer-section {

@@ -5,6 +5,7 @@ const wordDisplay = document.getElementById("word");
 const result = document.getElementById("result");
 const aside = document.getElementById("game-status");
 const stats = document.getElementById("stats");
+const boxes = document.querySelectorAll(".boxes");
 const timer = document.getElementById("timer");
 const winsEl = document.getElementById("wins");
 const lossEl = document.getElementById("losses");
@@ -12,7 +13,12 @@ const lossEl = document.getElementById("losses");
 
 
 
-wordDisplay.textContent = "Press Start to Begin"
+wordDisplay.textContent = "Press Start to Begin";
+boxes.forEach((box) => {
+    box.setAttribute("style", "background-color: #2874A6;")
+})
+
+
 
 
 
@@ -47,7 +53,18 @@ let wordArray = [
     "polymophism",
     "inheritance",
     "encapsulation",
-    "bootstrap"
+    "bootstrap",
+    "vue",
+    "w3schools",
+    "css",
+    "cascade",
+    "camelcase",
+    "algorithm",
+    "global",
+    "local",
+    "instance",
+    "error",
+    "debug"
 ]
 
 let currentWord;
@@ -56,6 +73,9 @@ let gameWon = false;
 let resetClicked = false;
 let pass;
 let gameOver = true;
+
+
+console.log("Game Over Start: ", gameOver)
 
 
 //FUNCTIONS
@@ -68,6 +88,8 @@ function startGame () {
     startTimer();
         //the black spaces appear in word area
     displayWord();
+    handleStatBar();
+    console.log("Game Over After Start: ", gameOver)
 }
 
 function startTimer () {
@@ -134,6 +156,31 @@ function displayWord () {
     wordDisplay.textContent = `${hiddenWord.split("").join(" ")}`
 }
 
+function handleStatBar () {
+    //update color when game begins and ends
+    boxes.forEach((box) => {
+        if (gameOver === true) {
+            box.setAttribute("style", "background-color: #2874A6;")
+        } else {
+            box.setAttribute("style", "background-color: #00FF00;")
+        }
+        
+    })
+
+    //if user guesses incorrect letter
+            //remove a box
+        //once total boxes equals 4
+            //change remaining colors to yellow
+        //once total boxes equals 2
+            //change remaining colors to red
+        //once total boxes equal zero
+            //user loses
+    //if user skips to next word
+        //reset bar
+    //if userWins
+        //reset bar
+}
+
 function userWins () {
     //record the win
     wins++;
@@ -162,7 +209,8 @@ function userLosses() {
 
     //reset start button
     startButton.textContent = "Start Game"
-
+    //update Stat Bar
+    handleStatBar();
 }
 
 function userPasses () {
@@ -172,7 +220,7 @@ function userPasses () {
     //clear stats
     losses++;
     lossEl.textContent = losses;
-
+    //give time for interval to clear in setTimer
     setTimeout(function () {
         startGame()
     }, 1000);
@@ -236,6 +284,7 @@ function resetGame () {
         timer.innerHTML = `00:0${timeLeft}`
         timer.classList = "light"
     }
+    handleStatBar();
     console.log("Let's reset!")
 }
 //USER INTERACTIONS
