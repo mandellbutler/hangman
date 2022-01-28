@@ -157,7 +157,7 @@ function displayWord () {
 }
 
 function handleStatBar () {
-    
+    //update color when game begins and ends
     boxes.forEach((box) => {
         if (gameOver === true) {
             box.setAttribute("style", "background-color: #2874A6;")
@@ -166,6 +166,19 @@ function handleStatBar () {
         }
         
     })
+
+    //if user guesses incorrect letter
+            //remove a box
+        //once total boxes equals 4
+            //change remaining colors to yellow
+        //once total boxes equals 2
+            //change remaining colors to red
+        //once total boxes equal zero
+            //user loses
+    //if user skips to next word
+        //reset bar
+    //if userWins
+        //reset bar
 }
 
 function userWins () {
