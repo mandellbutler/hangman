@@ -157,9 +157,10 @@ function displayWord () {
 }
 
 function handleStatBar () {
+    
     boxes.forEach((box) => {
         if (gameOver === true) {
-            box.setAttribute("style", "background-color: blue;")
+            box.setAttribute("style", "background-color: #2874A6;")
         } else {
             box.setAttribute("style", "background-color: #00FF00;")
         }
@@ -195,7 +196,8 @@ function userLosses() {
 
     //reset start button
     startButton.textContent = "Start Game"
-
+    //update Stat Bar
+    handleStatBar();
 }
 
 function userPasses () {
@@ -269,6 +271,7 @@ function resetGame () {
         timer.innerHTML = `00:0${timeLeft}`
         timer.classList = "light"
     }
+    handleStatBar();
     console.log("Let's reset!")
 }
 //USER INTERACTIONS
