@@ -64,6 +64,11 @@ let wordArray = [
     "local",
     "instance",
     "error",
+    "parent",
+    "child",
+    "tag",
+    "div",
+    "container",
     "debug"
 ]
 
@@ -75,7 +80,6 @@ let pass;
 let gameOver = true;
 
 
-console.log("Game Over Start: ", gameOver)
 
 
 //FUNCTIONS
@@ -89,7 +93,6 @@ function startGame () {
         //the black spaces appear in word area
     displayWord();
     handleStatBar();
-    console.log("Game Over After Start: ", gameOver)
 }
 
 function startTimer () {
@@ -125,7 +128,7 @@ function startTimer () {
         //if user guesses word
         } else if (gameWon) {
             //game over
-            gameOver = true;
+            // gameOver = true;
             clearInterval(timerInterval);
             userWins();
             //if reset clicked during game
@@ -166,7 +169,7 @@ function handleStatBar () {
         }
         
     })
-
+    
     //if user guesses incorrect letter
             //remove a box
         //once total boxes equals 4
@@ -176,9 +179,9 @@ function handleStatBar () {
         //once total boxes equal zero
             //user loses
     //if user skips to next word
+    if (pass) {
         //reset bar
-    //if userWins
-        //reset bar
+    }  
 }
 
 function userWins () {
@@ -190,7 +193,9 @@ function userWins () {
     result.setAttribute("style", "color: green;")
     result.textContent = "You Win!!!"
     //reset start button
-    startButton.textContent = "Next Word"
+    startButton.textContent = "Next Word";
+    //reset bar
+    handleStatBar();
 }
 
 function userLosses() {
@@ -256,9 +261,8 @@ function handleKeyPress (event) {
         gameWon = true;
     }
         
-        
-    console.log(key)
-    console.log(hiddenWord)
+    console.log("Hanlde Key Event: ", event)
+    console.log("Hidden Word: ", hiddenWord)
 }
 
 
@@ -303,6 +307,7 @@ function resetGame () {
 
     //user presses a letter
     document.addEventListener("keypress", (handleKeyPress))
+    
 //INITIALIZATIONS
 
 
