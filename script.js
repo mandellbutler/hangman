@@ -69,7 +69,10 @@ let wordArray = [
     "tag",
     "div",
     "container",
-    "debug"
+    "debug",
+    "assessment",
+    "apprentice",
+    "intern"
 ]
 
 let currentWord;
@@ -172,7 +175,31 @@ function handleStatBar (event) {
         
     // })
 
+    let key = event.key.toLowerCase();
+    let wrongLetters = [];
+
+    // for (let i = 0; i < currentWord.length; i++) {
+    //     let letter = currentWord[i];
+    //     if (letter !== key) {
+    //         console.log("Wrong choice")
+    //         wrongLetters.push(key)
+    //     }
+    // }
+
+    if (!currentWord.includes(key)) {
+        console.log("Wrong Choice!")
+        localStorage.getItem(wrongLetters);
+        wrongLetters.push(key)
+        localStorage.setItem(wrongLetters);
+    }
+
     
+    
+    
+    console.log("Statbar Key: ", event.key)
+    console.log("SB Current WOrd: ", currentWord)
+    console.log("Wrong: ", localStorage.getItem(wrongLetters))
+
     //if user guesses incorrect letter
             //remove a box
         //once total boxes equals 4
