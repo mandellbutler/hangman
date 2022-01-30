@@ -171,7 +171,6 @@ function handleStatBar (event) {
     //     }
         
     // })
-    
 
     
     //if user guesses incorrect letter
