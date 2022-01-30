@@ -171,28 +171,7 @@ function handleStatBar (event) {
     //     }
         
     // })
-    let key = event.key.toLowerCase();
-    let wrongLetters = [];
-
-    // for (let i = 0; i < currentWord.length; i++) {
-    //     let letter = currentWord[i];
-    //     if (letter !== key) {
-    //         console.log("Wrong choice")
-    //         wrongLetters.push(key)
-    //     }
-    // }
-
-    if (!currentWord.includes(key)) {
-        console.log("Wrong Choice!")
-        wrongLetters.push(key)
-    }
-
     
-    
-    
-    console.log("Statbar Key: ", event.key)
-    console.log("SB Current WOrd: ", currentWord)
-    console.log("Wrong: ", wrongLetters)
 
     
     //if user guesses incorrect letter
