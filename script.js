@@ -92,7 +92,9 @@ function startGame () {
     startTimer();
         //the black spaces appear in word area
     displayWord();
-    handleStatBar();
+    boxes.forEach((box) => {
+        box.setAttribute("style", "background-color: #00FF00;")
+    })
 }
 
 function startTimer () {
@@ -159,16 +161,39 @@ function displayWord () {
     wordDisplay.textContent = `${hiddenWord.split("").join(" ")}`
 }
 
-function handleStatBar () {
+function handleStatBar (event) {
     //update color when game begins and ends
-    boxes.forEach((box) => {
-        if (gameOver === true) {
-            box.setAttribute("style", "background-color: #2874A6;")
-        } else {
-            box.setAttribute("style", "background-color: #00FF00;")
-        }
+    // boxes.forEach((box) => {
+    //     if (gameOver === true) {
+    //         box.setAttribute("style", "background-color: #2874A6;")
+    //     } else {
+    //         box.setAttribute("style", "background-color: #00FF00;")
+    //     }
         
-    })
+    // })
+    let key = event.key.toLowerCase();
+    let wrongLetters = [];
+
+    // for (let i = 0; i < currentWord.length; i++) {
+    //     let letter = currentWord[i];
+    //     if (letter !== key) {
+    //         console.log("Wrong choice")
+    //         wrongLetters.push(key)
+    //     }
+    // }
+
+    if (!currentWord.includes(key)) {
+        console.log("Wrong Choice!")
+        wrongLetters.push(key)
+    }
+
+    
+    
+    
+    console.log("Statbar Key: ", event.key)
+    console.log("SB Current WOrd: ", currentWord)
+    console.log("Wrong: ", wrongLetters)
+
     
     //if user guesses incorrect letter
             //remove a box
@@ -185,6 +210,8 @@ function handleStatBar () {
 }
 
 function userWins () {
+    //set game over
+    gameOver = true;
     //record the win
     wins++;
     //display the win
@@ -195,7 +222,9 @@ function userWins () {
     //reset start button
     startButton.textContent = "Next Word";
     //reset bar
-    handleStatBar();
+    boxes.forEach((box) => {
+        box.setAttribute("style", "background-color: #2874A6;")
+    })
 }
 
 function userLosses() {
@@ -215,7 +244,9 @@ function userLosses() {
     //reset start button
     startButton.textContent = "Start Game"
     //update Stat Bar
-    handleStatBar();
+    boxes.forEach((box) => {
+        box.setAttribute("style", "background-color: #2874A6;")
+    })
 }
 
 function userPasses () {
@@ -261,8 +292,6 @@ function handleKeyPress (event) {
         gameWon = true;
     }
         
-    console.log("Hanlde Key Event: ", event)
-    console.log("Hidden Word: ", hiddenWord)
 }
 
 
@@ -288,7 +317,9 @@ function resetGame () {
         timer.innerHTML = `00:0${timeLeft}`
         timer.classList = "light"
     }
-    handleStatBar();
+    boxes.forEach((box) => {
+        box.setAttribute("style", "background-color: #2874A6;")
+    })
     console.log("Let's reset!")
 }
 //USER INTERACTIONS
@@ -306,6 +337,7 @@ function resetGame () {
     resetButton.addEventListener("click", (resetGame))
 
     //user presses a letter
+    document.addEventListener("keypress", (handleStatBar))
     document.addEventListener("keypress", (handleKeyPress))
     
 //INITIALIZATIONS
