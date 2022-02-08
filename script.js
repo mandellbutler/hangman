@@ -13,6 +13,8 @@ const lossEl = document.getElementById("losses");
 
 
 
+
+
 wordDisplay.textContent = "Press Start to Begin";
 boxes.forEach((box) => {
     box.setAttribute("style", "background-color: #2874A6;")
@@ -28,6 +30,8 @@ boxes.forEach((box) => {
 let timeLeft = 20;
 let losses = 0;
 let wins = 0;
+let wrong = 0;
+let wrongLetters = [];
 
 let wordArray = [
     "react",
@@ -145,6 +149,8 @@ function startTimer () {
             //if start btn clicked during game
         } else if (pass) {
             clearInterval(timerInterval);
+        } else if (gameOver) {
+            clearInterval(timerInterval);
         }
 
     }, 1000)
@@ -175,39 +181,46 @@ function handleStatBar (event) {
         
     // })
 
-    let key = event.key.toLowerCase();
-    let wrongLetters = [];
+    let key = event.key.toLowerCase();    
 
-    // for (let i = 0; i < currentWord.length; i++) {
-    //     let letter = currentWord[i];
-    //     if (letter !== key) {
-    //         console.log("Wrong choice")
-    //         wrongLetters.push(key)
-    //     }
-    // }
 
+    //if user guesses incorrect letter
     if (!currentWord.includes(key)) {
-        console.log("Wrong Choice!")
-        localStorage.getItem(wrongLetters);
+        wrong ++;
         wrongLetters.push(key)
-        localStorage.setItem(wrongLetters);
+        //remove a box
+
+        console.log("Wrong Choice: ", wrong)
+
     }
 
     
-    
-    
-    console.log("Statbar Key: ", event.key)
     console.log("SB Current WOrd: ", currentWord)
-    console.log("Wrong: ", localStorage.getItem(wrongLetters))
+    console.log("Wrong Letters: ", wrongLetters)
 
-    //if user guesses incorrect letter
-            //remove a box
+    
+        
+        
+    //once total boxes equal zero
+    if (wrong === 5) {
+        //game over
+        gameOver = true;
+        //user loses
+        userLosses();
+        //once total boxes equals 2    
+    } else if (wrong === 3) {
+        //change remaining colors to red
+        boxes.forEach((box) => {
+            box.setAttribute("style", "background-color: red;")
+        })
         //once total boxes equals 4
-            //change remaining colors to yellow
-        //once total boxes equals 2
-            //change remaining colors to red
-        //once total boxes equal zero
-            //user loses
+    } else if (wrong === 1) {
+        //change remaining colors to yellow
+        boxes.forEach((box) => {
+            box.setAttribute("style", "background-color: yellow;")
+        })
+    }
+            
     //if user skips to next word
     if (pass) {
         //reset bar
@@ -230,6 +243,9 @@ function userWins () {
     boxes.forEach((box) => {
         box.setAttribute("style", "background-color: #2874A6;")
     })
+    //reset wrong answers
+    wrong = 0;
+    wrongLetters = [];
 }
 
 function userLosses() {
@@ -252,6 +268,9 @@ function userLosses() {
     boxes.forEach((box) => {
         box.setAttribute("style", "background-color: #2874A6;")
     })
+    //reset wrong answers
+    wrong = 0;
+    wrongLetters = [];
 }
 
 function userPasses () {
@@ -265,6 +284,9 @@ function userPasses () {
     setTimeout(function () {
         startGame()
     }, 1000);
+    //reset wrong answers
+    wrong = 0;
+    wrongLetters = [];
 
 }
 
@@ -315,6 +337,9 @@ function resetGame () {
     //timer resets
     resetClicked = true;
     gameOver = true;
+    //reset wrong answers
+    wrong = 0;
+    wrongLetters = [];
     //if reset is pressed when game is already over
     if (gameOver) {
         //reset time left to 0
