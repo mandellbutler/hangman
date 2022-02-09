@@ -17,7 +17,6 @@ let losses = 0;
 let wins = 0;
 let wrong = 0;
 let wrongLetters = [];
-
 let wordArray = [
     "react",
     "javascript",
