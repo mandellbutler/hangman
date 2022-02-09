@@ -16,7 +16,6 @@ let timeLeft = 20;
 let losses = 0;
 let wins = 0;
 let wrong = 0;
-let wrongLetters = [];
 let wordArray = [
     "react",
     "javascript",
@@ -234,7 +233,6 @@ function userWins () {
     })
     //reset wrong answers
     wrong = 0;
-    wrongLetters = [];
     //stop user's ability to continue guessing
     removeKeyPress();
 }
@@ -256,7 +254,6 @@ function userLosses() {
     startButton.textContent = "Start Game"
     //reset wrong answers
     wrong = 0;
-    wrongLetters = [];
     //stop user's ability to continue guessing
     removeKeyPress();
 }
@@ -276,7 +273,6 @@ function userPasses () {
     }, 1000);
     //reset wrong answers
     wrong = 0;
-    wrongLetters = [];
 
 }
 
@@ -329,7 +325,6 @@ function resetGame () {
     gameOver = true;
     //reset wrong answers
     wrong = 0;
-    wrongLetters = [];
     //if reset is pressed when game is already over
     if (gameOver) {
         //reset time left to 0
