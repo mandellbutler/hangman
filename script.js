@@ -227,7 +227,19 @@ function handleStatBar (event) {
             boxes[i].setAttribute("style", "background-color: red;")
         }
         //4TH WRONG CHOICE
-    } 
+    } else if (wrong === 4) {
+        //change box 2 bg color to white
+        boxTwo.setAttribute("style", "background-color: white;")
+        
+        //5TH WRONG CHOICE
+    } else if (wrong === 5) {
+        //change box 1 bg color to white
+        boxOne.setAttribute("style", "background-color: white;")
+        //game over
+        gameOver = true;
+        //user loses
+        userLosses();
+    }
             
     //if user skips to next word
     if (pass) {
