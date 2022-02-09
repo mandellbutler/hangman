@@ -51,6 +51,14 @@ button {
     /* background-color: #2874A6; */
 }
 
+.wrong {
+    height: 2em;
+    width: 2em;
+    border: solid 2px black;
+    border-radius: 8px;
+    background-color: green;
+}
+
 button:hover {
     color: black;
     opacity: 70%;

@@ -128,6 +128,10 @@ function startTimer () {
         
         //timer reaches zero
         if (timeLeft === 0) {
+            //update Stat Bar
+            boxes.forEach((box) => {
+                box.setAttribute("style", "background-color: #2874A6;")
+            })
             //game over
             gameOver = true;
             //stop timer
@@ -171,6 +175,11 @@ function displayWord () {
 }
 
 function handleStatBar (event) {
+    const boxOne = document.getElementById("one");
+    const boxTwo = document.getElementById("two");
+    const boxThree = document.getElementById("three");
+    const boxFour = document.getElementById("four");
+    const boxFive = document.getElementById("five");
     //update color when game begins and ends
     // boxes.forEach((box) => {
     //     if (gameOver === true) {
@@ -199,26 +208,41 @@ function handleStatBar (event) {
     console.log("Wrong Letters: ", wrongLetters)
 
     
+    //HANDLING COLOR CHANGES ON STAT BAR    
         
+        //1ST WRONG CHOICE
+    if (wrong === 1) {
+        //change box 5 bg color to white
+        boxFive.setAttribute("style", "background-color: white;")
+        //change remaining colors to yellow
+        for (var i = 0; i < (boxes.length - 1); i++) {
+            boxes[i].setAttribute("style", "background-color: yellow;")
+        }
+        //2ND WRONG CHOICE
+    } else if (wrong === 2) {
+        //change box 4 bg color to white
+        boxFour.setAttribute("style", "background-color: white;")
+        //3RD WRONG CHOICE
+    } else if (wrong === 3) {
+        //change box 3 bg color to white
+        boxThree.setAttribute("style", "background-color: white;")
+        //change remaining colors to red
+        for (var i = 0; i < (boxes.length - 3); i++) {
+            boxes[i].setAttribute("style", "background-color: red;")
+        }
+        //4TH WRONG CHOICE
+    } else if (wrong === 4) {
+        //change box 2 bg color to white
+        boxTwo.setAttribute("style", "background-color: white;")
         
-    //once total boxes equal zero
-    if (wrong === 5) {
+        //5TH WRONG CHOICE
+    } else if (wrong === 5) {
+        //change box 1 bg color to white
+        boxOne.setAttribute("style", "background-color: white;")
         //game over
         gameOver = true;
         //user loses
         userLosses();
-        //once total boxes equals 2    
-    } else if (wrong === 3) {
-        //change remaining colors to red
-        boxes.forEach((box) => {
-            box.setAttribute("style", "background-color: red;")
-        })
-        //once total boxes equals 4
-    } else if (wrong === 1) {
-        //change remaining colors to yellow
-        boxes.forEach((box) => {
-            box.setAttribute("style", "background-color: yellow;")
-        })
     }
             
     //if user skips to next word
@@ -264,10 +288,6 @@ function userLosses() {
 
     //reset start button
     startButton.textContent = "Start Game"
-    //update Stat Bar
-    boxes.forEach((box) => {
-        box.setAttribute("style", "background-color: #2874A6;")
-    })
     //reset wrong answers
     wrong = 0;
     wrongLetters = [];
