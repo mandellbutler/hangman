@@ -305,6 +305,8 @@ function userLosses() {
 }
 
 function userPasses () {
+    //stop user's ability to continue guessing until game resets
+    removeKeyPress();
     pass = true;
     result.setAttribute("style", "color: #5499C7;")
     result.textContent = "Skipped!"
@@ -313,7 +315,7 @@ function userPasses () {
     lossEl.textContent = losses;
     //give time for interval to clear in setTimer
     setTimeout(function () {
-        startGame()
+        startGame();
     }, 1000);
     //reset wrong answers
     wrong = 0;
