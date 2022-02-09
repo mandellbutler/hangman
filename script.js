@@ -10,20 +10,11 @@ const timer = document.getElementById("timer");
 const winsEl = document.getElementById("wins");
 const lossEl = document.getElementById("losses");
 
-
-
-
-
-
+//set initial box and display appearance
 wordDisplay.textContent = "Press Start to Begin";
 boxes.forEach((box) => {
     box.setAttribute("style", "background-color: #2874A6;")
 })
-
-
-
-
-
 
 
 //STARTING DATA
@@ -76,7 +67,12 @@ let wordArray = [
     "debug",
     "assessment",
     "apprentice",
-    "intern"
+    "intern",
+    "senior",
+    "junior",
+    "jest",
+    "cookies",
+    "tokens"
 ]
 
 let currentWord;
