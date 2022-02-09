@@ -171,6 +171,11 @@ function displayWord () {
 }
 
 function handleStatBar (event) {
+    const boxOne = document.getElementById("one");
+    const boxTwo = document.getElementById("two");
+    const boxThree = document.getElementById("three");
+    const boxFour = document.getElementById("four");
+    const boxFive = document.getElementById("five");
     //update color when game begins and ends
     // boxes.forEach((box) => {
     //     if (gameOver === true) {
@@ -199,27 +204,18 @@ function handleStatBar (event) {
     console.log("Wrong Letters: ", wrongLetters)
 
     
+    //HANDLING COLOR CHANGES ON STAT BAR    
         
-        
-    //once total boxes equal zero
-    if (wrong === 5) {
-        //game over
-        gameOver = true;
-        //user loses
-        userLosses();
-        //once total boxes equals 2    
-    } else if (wrong === 3) {
-        //change remaining colors to red
-        boxes.forEach((box) => {
-            box.setAttribute("style", "background-color: red;")
-        })
-        //once total boxes equals 4
-    } else if (wrong === 1) {
+        //1ST WRONG CHOICE
+    if (wrong === 1) {
+        //change box 5 bg color to white
+        boxFive.setAttribute("style", "background-color: white;")
         //change remaining colors to yellow
-        boxes.forEach((box) => {
-            box.setAttribute("style", "background-color: yellow;")
-        })
-    }
+        for (var i = 0; i < (boxes.length - 1); i++) {
+            boxes[i].setAttribute("style", "background-color: yellow;")
+        }
+        //2ND WRONG CHOICE
+    } 
             
     //if user skips to next word
     if (pass) {
