@@ -215,6 +215,10 @@ function handleStatBar (event) {
             boxes[i].setAttribute("style", "background-color: yellow;")
         }
         //2ND WRONG CHOICE
+    } else if (wrong === 2) {
+        //change box 4 bg color to white
+        boxFour.setAttribute("style", "background-color: white;")
+        //3RD WRONG CHOICE
     } 
             
     //if user skips to next word
