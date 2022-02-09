@@ -276,6 +276,9 @@ function userWins () {
     //reset wrong answers
     wrong = 0;
     wrongLetters = [];
+    //stop user's ability to continue guessing
+    removeKeyPress();
+
 }
 
 function userLosses() {
