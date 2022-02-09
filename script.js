@@ -128,6 +128,10 @@ function startTimer () {
         
         //timer reaches zero
         if (timeLeft === 0) {
+            //update Stat Bar
+            boxes.forEach((box) => {
+                box.setAttribute("style", "background-color: #2874A6;")
+            })
             //game over
             gameOver = true;
             //stop timer
@@ -284,10 +288,6 @@ function userLosses() {
 
     //reset start button
     startButton.textContent = "Start Game"
-    //update Stat Bar
-    boxes.forEach((box) => {
-        box.setAttribute("style", "background-color: #2874A6;")
-    })
     //reset wrong answers
     wrong = 0;
     wrongLetters = [];
