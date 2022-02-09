@@ -91,6 +91,7 @@ let gameOver = true;
 
 //FUNCTIONS
 function startGame () {
+    addKeyPress();
     startButton.textContent = "Skip";
     pass = false;
     //reset timer color
@@ -102,6 +103,7 @@ function startGame () {
     boxes.forEach((box) => {
         box.setAttribute("style", "background-color: #00FF00;")
     })
+    console.log("Start TF = ", timeLeft)
 }
 
 function startTimer () {
@@ -125,9 +127,13 @@ function startTimer () {
         } else {
             timer.innerHTML = `00:${timeLeft}`;
         }
+
+        
         
         //timer reaches zero
         if (timeLeft === 0) {
+            console.log("INTERVAL TL = ", timeLeft)
+            removeKeyPress();
             //update Stat Bar
             boxes.forEach((box) => {
                 box.setAttribute("style", "background-color: #2874A6;")
@@ -270,6 +276,9 @@ function userWins () {
     //reset wrong answers
     wrong = 0;
     wrongLetters = [];
+    //stop user's ability to continue guessing
+    removeKeyPress();
+
 }
 
 function userLosses() {
@@ -291,9 +300,13 @@ function userLosses() {
     //reset wrong answers
     wrong = 0;
     wrongLetters = [];
+    //stop user's ability to continue guessing
+    removeKeyPress();
 }
 
 function userPasses () {
+    //stop user's ability to continue guessing until game resets
+    removeKeyPress();
     pass = true;
     result.setAttribute("style", "color: #5499C7;")
     result.textContent = "Skipped!"
@@ -302,7 +315,7 @@ function userPasses () {
     lossEl.textContent = losses;
     //give time for interval to clear in setTimer
     setTimeout(function () {
-        startGame()
+        startGame();
     }, 1000);
     //reset wrong answers
     wrong = 0;
@@ -387,8 +400,16 @@ function resetGame () {
     resetButton.addEventListener("click", (resetGame))
 
     //user presses a letter
-    document.addEventListener("keypress", (handleStatBar))
-    document.addEventListener("keypress", (handleKeyPress))
+    const addKeyPress = function () {
+        document.addEventListener("keypress", (handleStatBar))
+        document.addEventListener("keypress", (handleKeyPress))
+    }
+    
+    const removeKeyPress = function () {
+        document.removeEventListener("keypress", (handleStatBar))
+        document.removeEventListener("keypress", (handleKeyPress))
+    }
+    console.log("timeLeft = ", timeLeft)
     
 //INITIALIZATIONS
 
