@@ -91,6 +91,7 @@ let gameOver = true;
 
 //FUNCTIONS
 function startGame () {
+    //activate keypress
     addKeyPress();
     startButton.textContent = "Skip";
     pass = false;
@@ -103,7 +104,6 @@ function startGame () {
     boxes.forEach((box) => {
         box.setAttribute("style", "background-color: #00FF00;")
     })
-    console.log("Start TF = ", timeLeft)
 }
 
 function startTimer () {
@@ -111,7 +111,7 @@ function startTimer () {
     gameWon = false;
     //reset timer
     resetClicked = false;
-    timeLeft = 11;
+    timeLeft = 30;
     //reset Result Area
     result.textContent = "";
     timer.innerHTML = `00:${timeLeft}`
@@ -128,8 +128,6 @@ function startTimer () {
             timer.innerHTML = `00:${timeLeft}`;
         }
 
-        
-        
         //timer reaches zero
         if (timeLeft === 0) {
             console.log("INTERVAL TL = ", timeLeft)
@@ -146,8 +144,6 @@ function startTimer () {
             userLosses();
         //if user guesses word
         } else if (gameWon) {
-            //game over
-            // gameOver = true;
             clearInterval(timerInterval);
             userWins();
             //if reset clicked during game
@@ -186,75 +182,49 @@ function handleStatBar (event) {
     const boxThree = document.getElementById("three");
     const boxFour = document.getElementById("four");
     const boxFive = document.getElementById("five");
-    //update color when game begins and ends
-    // boxes.forEach((box) => {
-    //     if (gameOver === true) {
-    //         box.setAttribute("style", "background-color: #2874A6;")
-    //     } else {
-    //         box.setAttribute("style", "background-color: #00FF00;")
-    //     }
-        
-    // })
-
     let key = event.key.toLowerCase();    
-
 
     //if user guesses incorrect letter
     if (!currentWord.includes(key)) {
         wrong ++;
-        wrongLetters.push(key)
-        //remove a box
 
-        console.log("Wrong Choice: ", wrong)
+        //HANDLE COLOR CHANGES ON STAT BAR    
+            //1ST WRONG CHOICE
+        if (wrong === 1) {
+            //change box 5 bg color to white
+            boxFive.setAttribute("style", "background-color: white;")
+            //change remaining colors to yellow
+            for (var i = 0; i < (boxes.length - 1); i++) {
+                boxes[i].setAttribute("style", "background-color: yellow;")
+            }
+            //2ND WRONG CHOICE
+        } else if (wrong === 2) {
+            //change box 4 bg color to white
+            boxFour.setAttribute("style", "background-color: white;")
+            //3RD WRONG CHOICE
+        } else if (wrong === 3) {
+            //change box 3 bg color to white
+            boxThree.setAttribute("style", "background-color: white;")
+            //change remaining colors to red
+            for (var i = 0; i < (boxes.length - 3); i++) {
+                boxes[i].setAttribute("style", "background-color: red;")
+            }
+            //4TH WRONG CHOICE
+        } else if (wrong === 4) {
+            //change box 2 bg color to white
+            boxTwo.setAttribute("style", "background-color: white;")
+            //5TH WRONG CHOICE
+        } else if (wrong === 5) {
+            //change box 1 bg color to white
+            boxOne.setAttribute("style", "background-color: white;")
+            //game over
+            gameOver = true;
+            //user loses
+            userLosses();
+        }
 
     }
 
-    
-    console.log("SB Current WOrd: ", currentWord)
-    console.log("Wrong Letters: ", wrongLetters)
-
-    
-    //HANDLING COLOR CHANGES ON STAT BAR    
-        
-        //1ST WRONG CHOICE
-    if (wrong === 1) {
-        //change box 5 bg color to white
-        boxFive.setAttribute("style", "background-color: white;")
-        //change remaining colors to yellow
-        for (var i = 0; i < (boxes.length - 1); i++) {
-            boxes[i].setAttribute("style", "background-color: yellow;")
-        }
-        //2ND WRONG CHOICE
-    } else if (wrong === 2) {
-        //change box 4 bg color to white
-        boxFour.setAttribute("style", "background-color: white;")
-        //3RD WRONG CHOICE
-    } else if (wrong === 3) {
-        //change box 3 bg color to white
-        boxThree.setAttribute("style", "background-color: white;")
-        //change remaining colors to red
-        for (var i = 0; i < (boxes.length - 3); i++) {
-            boxes[i].setAttribute("style", "background-color: red;")
-        }
-        //4TH WRONG CHOICE
-    } else if (wrong === 4) {
-        //change box 2 bg color to white
-        boxTwo.setAttribute("style", "background-color: white;")
-        
-        //5TH WRONG CHOICE
-    } else if (wrong === 5) {
-        //change box 1 bg color to white
-        boxOne.setAttribute("style", "background-color: white;")
-        //game over
-        gameOver = true;
-        //user loses
-        userLosses();
-    }
-            
-    //if user skips to next word
-    if (pass) {
-        //reset bar
-    }  
 }
 
 function userWins () {
@@ -278,11 +248,9 @@ function userWins () {
     wrongLetters = [];
     //stop user's ability to continue guessing
     removeKeyPress();
-
 }
 
 function userLosses() {
-    console.log("User Losses!")
     //display loss message
     losses++;
     //record the loss
@@ -383,7 +351,6 @@ function resetGame () {
     boxes.forEach((box) => {
         box.setAttribute("style", "background-color: #2874A6;")
     })
-    console.log("Let's reset!")
 }
 //USER INTERACTIONS
     //user presses start game button
@@ -409,8 +376,7 @@ function resetGame () {
         document.removeEventListener("keypress", (handleStatBar))
         document.removeEventListener("keypress", (handleKeyPress))
     }
-    console.log("timeLeft = ", timeLeft)
-    
+
 //INITIALIZATIONS
 
 
